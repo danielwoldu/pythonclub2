@@ -11,10 +11,10 @@ class MeetingTest(TestCase):
        self.assertEqual(str(Meeting._meta.db_table), 'meeting')
 #Testing the view
 
-# class IndexTest(TestCase):
-#    def test_view_url_accessible_by_name(self):
-#        response = self.client.get(reverse('index'))
-#        self.assertEqual(response.status_code, 200)
+class IndexTest(TestCase):
+   def test_view_url_accessible_by_name(self):
+       response = self.client.get(reverse('index'))
+       self.assertEqual(response.status_code, 200)
   
 # class MeeTest(TestCase):
 #    def test_view_url_accessible_by_name(self):
