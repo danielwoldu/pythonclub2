@@ -29,7 +29,7 @@ def newresource(request):
                post.save()
                form=ResourceForm()
     else:
-        form=ResouceForm()
+        form=ResourceForm()
     return render(request, 'clubapp/newresource.html',{'form':form})
 def loginmessage(request):
     return render(request, 'clubapp/loginmessage.html')

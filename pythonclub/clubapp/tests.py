@@ -1,6 +1,9 @@
 #Tesing Models
 from django.test import TestCase
 from .models import Meeting, MeetingMinute, Resource
+from .forms import ResourceForm
+from django.contrib.auth.models import User
+from django.urls import reverse
 
 class MeetingTest(TestCase):
    def test_string(self):
@@ -15,6 +18,32 @@ class IndexTest(TestCase):
    def test_view_url_accessible_by_name(self):
        response = self.client.get(reverse('index'))
        self.assertEqual(response.status_code, 200)
+
+class ResourceFormTest(TestCase):
+    def setUp(self):
+        self.user=User.objects.create(username="Python",password='pass')
+
+    def test_validForm(self):
+        data={ 
+            'resourcename':'python4',
+            'resourcetype': 'type',
+            'user':self.user,
+            'resourceurl': 'http://www.umuun.com',
+
+
+        }  
+        form = ResourceForm(data=data)
+        self.assertTrue(form.is_valid)  
+    def test_resourceFormInvalid(self):
+        data={
+            'resourcename': 'python4',
+            'resourcetype': 'type',
+            'user':self.user,
+            'resourceurl':'http://www.umuun.com',
+        }
+        form = ResourceForm(data=data)
+        self.assertFalse(form.is_valid())
+
   
 # class MeeTest(TestCase):
 #    def test_view_url_accessible_by_name(self):
